@@ -3,6 +3,7 @@ import firebase from '../../firebase';
 import Login from '../../components/Login/Login';
 import "../../components/LoginHome/LoginHome.css";
 import Hero from "../Login/Hero";
+import {HashRouter, Route} from "react-router-dom";
 
 const LoginHome = () => {
 
@@ -78,14 +79,19 @@ const LoginHome = () => {
     };
 
     useEffect( () =>{
-        authListener();
+        // setUser("");
+             authListener();
+  
     }, []);
     
     
     return (
         <>
+        
         {user ? (
             <Hero 
+                email={email}
+                setEmail={setEmail}
                 handleLogout={handleLogout}
             />
         ):(

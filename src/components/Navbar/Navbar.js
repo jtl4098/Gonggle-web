@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {MenuItems} from "./MenuItems"
-import {Button} from "../Button"
-import './Navbar.css'
+
+import {MenuItems} from "./MenuItems";
+import {Button} from "../Button";
+import {Link} from "react-router-dom";
+import './Navbar.css';
 
 
 
@@ -12,10 +14,8 @@ class Navbar extends Component{
         this.setState({ clicked : !this.state.clicked})
     }
 
-
     render(){
         return(
-         
             <nav className="NavbarItems">
                 <h1 className="navbar-logo">Gonggle <i className="fab fa-react"></i></h1>
                 <div className="menu-icon" onClick={this.handleClick}>
@@ -29,16 +29,13 @@ class Navbar extends Component{
                                     {item.title}
                                 </a>
                             </li>
-                            
                         )
                     })}
                     
                 </ul>
+                <a href="/loginHome" className="nav-links">로그인</a>
                 
-                <Button>Sign Up</Button>
             </nav>
-            
-          
         )
     }
 }

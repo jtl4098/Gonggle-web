@@ -1,15 +1,25 @@
 
 import React from 'react';
-import Navbar from "./components/Navbar/Navbar";
-import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
 import LoginHome from './components/LoginHome/LoginHome';
+import Navbar from "./components/Navbar/Navbar";
+
+import './App.css'
+
+
+
+
 
 function App() {
   return (
     <div className="App">
     
-      <Navbar/>
+      
 
+      <BrowserRouter>
+      <Route path="/" exact={true} component={Navbar} />
+      <Route path="/loginHome"  component={LoginHome}/>
+      </BrowserRouter>
     </div>
   );
 }

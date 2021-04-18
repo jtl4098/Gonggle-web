@@ -14,6 +14,8 @@ const firebaseConfig = {
     measurementId: "G-K13T42S22X"
   };
 
+
   const fire = firebase.initializeApp(firebaseConfig);
+  
 
   export default fire;
