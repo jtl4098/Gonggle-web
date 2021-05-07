@@ -11,21 +11,36 @@ const MyEducation = (props) => {
     const [eduIds, setEduIds] = useState([]);
     const [loading, setLoading] = useState(false);
 
+
+    const authListener = () =>{
+        firebase.auth().onAuthStateChanged(user =>{
+            if(user){
+                
+                database.collection('users').doc(user.ac.email).collection('users_course').onSnapshot( snapshot =>{
+                    const fetchData = [];
+                    snapshot.forEach(document =>{
+                        fetchData.push(document.get("eduId"))
+                        
+                    })
+                    setEduIds(fetchData)
+                    //setEduIds(snapshot.docs.map(doc=>doc.data()))
+                    console.log(eduIds)
+                    setLoading(true)
+                    
+                    
+                })
+
+            }else{
+                
+       
+            }
+        });
+    };
+
     useEffect( () =>{
-        database.collection('users').doc(email).collection('users_course').onSnapshot( snapshot =>{
-            const fetchData = [];
-            snapshot.forEach(document =>{
-                fetchData.push(document.get("eduId"))
-               
-            })
-            setEduIds(fetchData)
-            //setEduIds(snapshot.docs.map(doc=>doc.data()))
-            console.log(eduIds)
-            setLoading(true)
-            
-           
-        })
-                 
+        
+        authListener();       
+
     },[])
 
     return(

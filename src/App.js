@@ -5,6 +5,7 @@ import LoginHome from './components/LoginHome/LoginHome';
 import Navbar from "./components/Navbar/Navbar";
 
 import './App.css'
+import Login from './components/Login/Login';
 
 
 
@@ -19,6 +20,7 @@ function App() {
       <BrowserRouter>
       <Route path="/" exact={true} component={Navbar} />
       <Route path="/loginHome"  component={LoginHome}/>
+      <Route path="/login" component={Login} />
       </BrowserRouter>
     </div>
   );

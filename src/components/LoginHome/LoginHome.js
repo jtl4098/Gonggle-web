@@ -3,16 +3,18 @@ import firebase from '../../firebase';
 import Login from '../../components/Login/Login';
 import "../../components/LoginHome/LoginHome.css";
 import Hero from "../Login/Hero";
-import {HashRouter, Route} from "react-router-dom";
+import {HashRouter, Route, Redirect} from "react-router-dom";
 
 const LoginHome = () => {
 
-    const [user, setUser] = useState('');
+    const [user, setUser] = useState(null);
+    const [isLoginedIn, setIsLoginedIn] = useState(false);
     const [email , setEmail] = useState('');
     const [password , setPassword] = useState('');
     const [emailError , setEmailError] = useState('');
     const [passwordError , setPasswordError] = useState('');
     const [hasAccount , setHasAccount] = useState(false);
+    const [isLoading, setIsloading] = useState(true);
 
     const clearInputs = () =>{
         setEmail('');
@@ -71,10 +73,14 @@ const LoginHome = () => {
             if(user){
                 clearErrors();
                 setUser(user);
+                setIsLoginedIn(true);
+                console.log(user);
 
             }else{
-                setUser("");
+                setUser(null);
+                setIsLoginedIn(false);
             }
+            setIsloading(false);
         });
     };
 
@@ -87,29 +93,39 @@ const LoginHome = () => {
     
     return (
         <>
-        
-        {user ? (
-            <Hero 
+
+        {isLoading ? (
+            <p>Loading</p>
+             
+        ):(
+            <>
+            {isLoginedIn ? (
+                <Hero 
+                    email={email}
+                    setEmail={setEmail}
+                    user = {user}
+                    setUser = {setUser}
+                    handleLogout={handleLogout}
+                />
+            ):(
+                <Login 
                 email={email}
                 setEmail={setEmail}
-                handleLogout={handleLogout}
-            />
-        ):(
-            <Login 
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword = {setPassword}
-            handleLogin = {handleLogin}
-            handleSignUp = {handleSignUp}
-            hasAccount = {hasAccount}
-            setHasAccount = {setHasAccount}
-            emailError = {emailError}
-            passwordError = {passwordError}
-            
-            />
-            
+                password={password}
+                setPassword = {setPassword}
+                handleLogin = {handleLogin}
+                handleSignUp = {handleSignUp}
+                hasAccount = {hasAccount}
+                setHasAccount = {setHasAccount}
+                emailError = {emailError}
+                passwordError = {passwordError}
+                
+                />
+                
+            )}
+            </>
         )}
+        
         
         </>
 
