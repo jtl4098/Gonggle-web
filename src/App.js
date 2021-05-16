@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import LoginHome from './components/LoginHome/LoginHome';
 import Navbar from "./components/Navbar/Navbar";
 
-import './App.css'
+import './App.css';
 import Login from './components/Login/Login';
 
 
