@@ -5,14 +5,16 @@ import { Button } from "react-bootstrap";
 import {Link} from 'react-router-dom';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import MyCourse from "../MyCourse/MyCourse";
+
 import './Educations.css'
+import Hero from "../Login/Hero";
 
 const database = firebase.firestore();
 
 
 const Educations = (props) => {
    
-    const {email,eduIds, setEduIds} = props;
+    const {email,eduIds, setEduIds,user,setEmail, setUser, handleLogout} = props;
     
     const [educations, setEducations] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -66,11 +68,21 @@ const Educations = (props) => {
         {loading ? (
             <>
             {renderEducation ? (
-                <MyCourse
+                // <MyCourse
+                //     educationId = {educationId}
+                //     setEducationId = {setEducationId}
+
+                // />
+                <Hero 
+                    email={email}
+                    setEmail={setEmail}
+                    user = {user}
+                    setUser = {setUser}
+                    handleLogout={handleLogout}
                     educationId = {educationId}
                     setEducationId = {setEducationId}
-
                 />
+               
             ):(
                 <div className="row">
                 {educations.map(renderCard)}   

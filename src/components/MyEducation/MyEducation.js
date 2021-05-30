@@ -6,7 +6,7 @@ const database = firebase.firestore();
 
 
 const MyEducation = (props) => {
-    const {email, setEmail} = props;
+    const {email, setEmail, user, setUser, handleLogout} = props;
     
     const [eduIds, setEduIds] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -51,6 +51,10 @@ const MyEducation = (props) => {
                 email = {email}
                 eduIds = {eduIds}
                 setEduIds = {setEduIds}
+                user = {user}
+                setEmail = {setEmail}
+                setUser = {setUser}
+                handleLogout={handleLogout}
                  />
             ):
             (

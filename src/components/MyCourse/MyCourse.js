@@ -8,7 +8,7 @@ import { Button } from "react-bootstrap";
 
 const database = firebase.firestore();
 const MyCourse = (props) => {
-    const {educationId, setEducationid} = props;
+    const {educationId} = props;
     
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(false);

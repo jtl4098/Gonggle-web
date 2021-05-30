@@ -4,6 +4,7 @@ import Login from '../../components/Login/Login';
 import "../../components/LoginHome/LoginHome.css";
 import Hero from "../Login/Hero";
 import {HashRouter, Route, Redirect} from "react-router-dom";
+import MyEducation from "../MyEducation/MyEducation";
 
 const LoginHome = () => {
 
@@ -100,7 +101,14 @@ const LoginHome = () => {
         ):(
             <>
             {isLoginedIn ? (
-                <Hero 
+                // <Hero 
+                //     email={email}
+                //     setEmail={setEmail}
+                //     user = {user}
+                //     setUser = {setUser}
+                //     handleLogout={handleLogout}
+                // />
+                <MyEducation
                     email={email}
                     setEmail={setEmail}
                     user = {user}

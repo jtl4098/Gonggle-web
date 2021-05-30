@@ -7,16 +7,18 @@ import MyEducation from '../MyEducation/MyEducation';
 import "./Hero.css";
 import MainNavbar from '../Main/MainNavbar';
 import "../Navbar/Navbar.css";
+import MyCourse from "../MyCourse/MyCourse";
 
 const Hero = (props) => {
-    const {email, setEmail,handleLogout, user, setUser} = props;
+    const {email, setEmail,handleLogout, user, setUser, educationId, setEducationId} = props;
     const authListener = () =>{
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
            
                 
                 setUser(user);
-                console.log(user);
+                console.log(educationId);
+
 
             }else{
                 setUser(null);
@@ -33,24 +35,7 @@ const Hero = (props) => {
     return(
 
     <>
-            {/* <section className="hero">
-                <nav>
-                    <h2>Welcome</h2>
-                
 
-
-                        <button onClick={handleLogout}>Log Out</button>
-                    
-                    
-                </nav>
-
-                <MyEducation 
-                email = {email}
-                setEmail = {setEmail}
-                />
-                
-
-            </section> */}
             <div className="hero-main">
             <Router>
                 <MainNavbar
@@ -58,7 +43,8 @@ const Hero = (props) => {
                 />
                 <Switch>
                     <Route path='/'exact={true}/>
-                    <Route path='/courses' component={MyEducation}/>
+                    {/* <Route path='/courses' component={MyEducation}/> */}
+                    <Route path="/courses" render={ () => <MyCourse educationId = {educationId}  />} />
 
                 </Switch>
             </Router>
